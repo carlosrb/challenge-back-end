@@ -3,36 +3,35 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package challenge.rest.controller;
 
+import challenge.repository.bean.Category;
+import challenge.repository.dao.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import prova.tecnica.repository.bean.Posicao;
-import prova.tecnica.repository.dao.PosicaoRepository;
-
 
 /**
  *
  * @author Carlos Roberto B. Meneghette
  *
- * @date 2019-08-14
+ * @date 2019-09-28
  *
  */
 @RestController
-public class PosicaoController {
+@RequestMapping("/api/category")
+public class CategoryController {
 
     @Autowired
-    private PosicaoRepository posicaoRepository;
+    private CategoryRepository categoryRepository;
 
-    @GetMapping("api/posicao")
-    public ResponseEntity<Iterable<Posicao>> getAll(Model model) {
-        return new ResponseEntity<>(posicaoRepository.findAll(),
+    @GetMapping("listAll")
+    public ResponseEntity<Iterable<Category>> getAll() {
+        return new ResponseEntity<>(categoryRepository.findAll(),
                 HttpStatus.OK);
     }
-    
+
 }
